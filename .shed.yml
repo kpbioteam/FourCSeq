@@ -1,0 +1,14 @@
+categories:
+  - Sequence Analysis
+description: Tools suite for 4C sequencing analysis
+homepage_url: https://bioconductor.org/packages/release/bioc/vignettes/FourCSeq/inst/doc/FourCSeq.pdf
+remote_repository_url: https://github.com/galaxyproject/tools-iuc/tree/master/tools/gemini
+name: FourCSeq
+owner: iuc
+auto_tool_repositories:
+  name_template: "{{ tool_id }}"
+  description_template: "Wrapper for the FourCSeq tool suite: {{ tool_name }}"
+suite:
+  name: "suite_fourcseq"
+  description: Tools suite for FourCSeq is a set of tools dedicated to the analysis of 4C sequencing data. The suite provides a pipeline to detect specific interactions between DNA elements and identify differential interactions between conditions.
+  long_description: Tools to analyze & visualize 4C sequencing data
