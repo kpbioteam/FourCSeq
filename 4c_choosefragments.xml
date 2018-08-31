@@ -11,22 +11,36 @@
     </command>
     <configfiles>
     <configfile name="minfi_fourcseq_script"><![CDATA[
-    require("FourCSeq", quietly = TRUE) 
+require("FourCSeq", quietly = TRUE) 
+
+fc <- get(load('$input1'))
+
+colData(fc)\$chr = '$input2' 
+colData(fc)\$start = as.numeric('$input3') 
+colData(fc)\$end = as.numeric('$input4') 
+
+save(fc,file = '$output1')
 
 
  ]]>
     </configfile>
     </configfiles>  
  <inputs>
-        <param type="data" name="input1" format="rdata" label="RGChannelSet"/>
- </inputs>
+        <param type="data" name="input1" format="rdata" label="Data with Fragments"/>
+        <param name="input2" type="text" value="chr2L" label="Chromosome"/>
+        <param name="input3" type="text" value="6027" label="Fragment Start"/>
+        <param name="input4" type="text" value="6878" label="Fragment End" /> 
+</inputs>
  <outputs>
-        <data name="output1" format="rdata" label="MethylSet" />
+        <data name="output1" format="rdata" label="Choosen Fragments" />
  </outputs>
     <tests>
         <test>
-            <param name="input1" value="RGSet.rdata"/>
-            <output name="output1" file="MSet.rdata"/>
+            <param name="input1" value="addFragments.rdata"/>
+            <param name="input2" value="chr2L"/>
+            <param name="input3" value="6027"/>
+            <param name="input4" value="6878"/>
+            <output name="output1" file="chooseFragments.rdata"/>
         </test>
     </tests>
     <help><![CDATA[
