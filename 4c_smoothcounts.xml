@@ -1,0 +1,37 @@
+<tool id="4c_smoothcounts" name="4Cseq smooth counts">
+<description>smooth the counts of neighboring fragments</description>
+     <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <command detect_errors="exit_code">
+ <![CDATA[
+     Rscript '$minfi_fourcseq_script'
+    ]]>
+    </command>
+    <configfiles>
+    <configfile name="minfi_fourcseq_script"><![CDATA[
+    require("FourCSeq", quietly = TRUE) 
+
+
+ ]]>
+    </configfile>
+    </configfiles>
+ <inputs>
+        <param type="data" name="input1" format="rdata" label="RGChannelSet"/>
+ </inputs>
+ <outputs>
+        <data name="output1" format="rdata" label="MethylSet" />
+ </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="RGSet.rdata"/>
+            <output name="output1" file="MSet.rdata"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        This tool smooth counts using the number of fragments provided by binWidth. binWidth has to be an odd number so that an equal number of fragments to each side of the current fragment are used for smoothing.
+    ]]></help>
+    <expand macro="citations" />
+</tool>
+

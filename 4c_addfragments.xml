@@ -1,0 +1,36 @@
+<tool id="4c_addfragments" name="4Cseq add fragments">
+    <description>Adds the genomic position and information of the restriction fragments</description>
+     <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements" />
+    <command detect_errors="exit_code">
+ <![CDATA[
+     Rscript '$minfi_fourcseq_script'
+    ]]>
+    </command>
+    <configfiles>
+    <configfile name="minfi_fourcseq_script"><![CDATA[
+    require("FourCSeq", quietly = TRUE) 
+
+
+ ]]> 
+    </configfile>
+    </configfiles>  
+ <inputs>
+        <param type="data" name="input1" format="rdata" label="RGChannelSet"/>
+ </inputs>
+ <outputs>
+        <data name="output1" format="rdata" label="MethylSet" />
+ </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="RGSet.rdata"/>
+            <output name="output1" file="MSet.rdata"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        This tool add the restriction fragment information.
+    ]]></help>
+    <expand macro="citations" />
+</tool>
