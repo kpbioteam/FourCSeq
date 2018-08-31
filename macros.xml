@@ -1,12 +1,13 @@
 <macros>
-<token name="@VERSION@">1.14.0</token>
+<token name="@VERSION@">1.12.0</token>
     <xml name="requirements">
         <requirements>
             <requirement type="package" version="@VERSION@">bioconductor-fourcseq</requirement>
             <requirement type="package" version="3.2.2">bioconductor-txdb.hsapiens.ucsc.hg19.knowngene</requirement>
             <requirement type="package" version="3.2.2">bioconductor-txdb.mmusculus.ucsc.mm9.knowngene</requirement>
             <requirement type="package" version="3.4.0">bioconductor-txdb.mmusculus.ucsc.mm10.knowngene</requirement>
-            <yield />
+            <requirement type="package" version="3.2.2">bioconductor-txdb.dmelanogaster.ucsc.dm3.ensgene</requirement>    
+        <yield />
         </requirements>
     </xml>
 
