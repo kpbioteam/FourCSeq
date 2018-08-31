@@ -11,22 +11,31 @@
     </command>
     <configfiles>
     <configfile name="minfi_fourcseq_script"><![CDATA[
-    require("FourCSeq", quietly = TRUE) 
+require("FourCSeq", quietly = TRUE) 
 
+fc <- get(load('$input1'))
+
+fc <- countFragmentOverlaps(fc, trim='$input2', minMapq='$input3')
+
+save(fc,file = '$output1')    
 
  ]]>
     </configfile>
     </configfiles>
  <inputs>
-        <param type="data" name="input1" format="rdata" label="RGChannelSet"/>
+        <param type="data" name="input1" format="rdata" label="Choosen Fragments"/>
+        <param name="input2" type="text" value="0" label="Trim" help="Number of bases that should be trimmed at the start of a read. This is necessary if the read still contains the restriction enzyme sequence. Default is 0 bases."/>
+        <param name="input3" type="text" value="0" label="Minimum Mapping Quality" help="Minimum mapping quality required for counting the read. Default is 0. If set to negative values the filtering step is skipped." /> 
  </inputs>
  <outputs>
-        <data name="output1" format="rdata" label="MethylSet" />
+        <data name="output1" format="rdata" label="Count Fragments" />
  </outputs>
     <tests>
         <test>
-            <param name="input1" value="RGSet.rdata"/>
-            <output name="output1" file="MSet.rdata"/>
+            <param name="input1" value="chooseFragments.rdata"/>
+            <param name="input2" value="4"/>
+            <param name="input3" value="30"/>
+            <output name="output1" file="countFragments.rdata"/>
         </test>
     </tests>
     <help><![CDATA[
