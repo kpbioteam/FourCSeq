@@ -11,22 +11,31 @@
     </command>
     <configfiles>
     <configfile name="minfi_fourcseq_script"><![CDATA[
-    require("FourCSeq", quietly = TRUE) 
+require("FourCSeq", quietly = TRUE) 
 
+fc <- get(load('$input1'))
+
+fc <- addFragments(fc)
+
+#findViewpointFragments(fc)
+
+#fc <- addViewpointFrags(fc)
+
+save(fc,file = '$output1')
 
  ]]> 
     </configfile>
     </configfiles>  
  <inputs>
-        <param type="data" name="input1" format="rdata" label="RGChannelSet"/>
+        <param type="data" name="input1" format="rdata" label="FourCSeq Data"/>
  </inputs>
  <outputs>
-        <data name="output1" format="rdata" label="MethylSet" />
+        <data name="output1" format="rdata" label="addFragments" />
  </outputs>
     <tests>
         <test>
-            <param name="input1" value="RGSet.rdata"/>
-            <output name="output1" file="MSet.rdata"/>
+            <param name="input1" value="fcdata.rdata"/>
+            <output name="output1" file="addFragments.rdata"/>
         </test>
     </tests>
     <help><![CDATA[
