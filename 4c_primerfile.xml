@@ -11,17 +11,35 @@
         #for $counter, $file in enumerate($files_grn):
         ln -s $file ./${counter+1}_Grn.idat &&
         #end for
-        Rscript '$read_idat_script'
+        Rscript '$read_primerfile_script'
       ]]></command>
       <configfiles>
-      <configfile name="read_idat_script"><![CDATA[
-        require("minfi", quietly = TRUE)
+      <configfile name="read_primerfile_script"><![CDATA[
+        require("", quietly = TRUE)
         files<-list()
         #for $counter, $input in enumerate($files_red):
         files['${counter+1}'] <- '${counter+1}'
         #end for
         out <- read.metharray(files)
         save(out, file = '$RGChannelSet')
+
+        metadata <- list(projectPath = exampleData,
+                 fragmentDir = re_fragments,
+                 referenceGenomeFile = referenceGenomeFile,
+                 reSequence1 =  reSequence1,
+                 reSequence2 = reSequence2,
+                 primerFile = primerFile,
+                 bamFilePath = bamFilePath)
+
+        colData <- DataFrame(viewpoint = "testdata",
+                     condition = factor(factors),  
+                     levels = c(levels), 
+                     replicate = rep(c(1, 2))
+ 
+        bamFile = c(bamFiles,  sequencingPrimer="first")
+        fc <- FourC(colData, metadata)
+        save(fc,file = 'fcdata.rdata')
+
         ]]> </configfile>
         </configfiles>
         <inputs>
