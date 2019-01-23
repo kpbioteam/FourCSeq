@@ -15,13 +15,13 @@
       ]]></command>
       <configfiles>
       <configfile name="read_primerfile_script"><![CDATA[
-        require("", quietly = TRUE)
-        files<-list()
-        #for $counter, $input in enumerate($files_red):
+         require("FourCSeq", quietly = TRUE)
+
+         files<-list()
+
+         #for  $counter, $input in enumerate($files_red):
         files['${counter+1}'] <- '${counter+1}'
-        #end for
-        out <- read.metharray(files)
-   
+ 
         $exampleData, $re_fragments, $referenceGenomeFile, 
         $reSequence1, $reSequence2, $primerFile, $bamFilePath,
         $viewpoint, $factors, $levels, $rep_no
@@ -37,10 +37,12 @@
         colData <- DataFrame(viewpoint = viewpoint,
                      condition = factor(factors),  
                      levels = c(levels), 
-                     replicate = rep(c(rep_no))
- 
-        bamFile = c(bamFiles,  sequencingPrimer="first")
+                     replicate = rep(c(rep_no)),
+                     bamFile = c(bamFiles,  
+                     sequencingPrimer="first")
+
         fc <- FourC(colData, metadata)
+         #end for
         save(fc,file = 'fcdata.rdata')
 
         ]]> </configfile>
