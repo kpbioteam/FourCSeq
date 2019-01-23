@@ -21,7 +21,10 @@
         files['${counter+1}'] <- '${counter+1}'
         #end for
         out <- read.metharray(files)
-        save(out, file = '$RGChannelSet')
+   
+        $exampleData, $re_fragments, $referenceGenomeFile, 
+        $reSequence1, $reSequence2, $primerFile, $bamFilePath,
+        $viewpoint, $factors, $levels, $rep_no
 
         metadata <- list(projectPath = exampleData,
                  fragmentDir = re_fragments,
@@ -31,10 +34,10 @@
                  primerFile = primerFile,
                  bamFilePath = bamFilePath)
 
-        colData <- DataFrame(viewpoint = "testdata",
+        colData <- DataFrame(viewpoint = viewpoint,
                      condition = factor(factors),  
                      levels = c(levels), 
-                     replicate = rep(c(1, 2))
+                     replicate = rep(c(rep_no))
  
         bamFile = c(bamFiles,  sequencingPrimer="first")
         fc <- FourC(colData, metadata)
