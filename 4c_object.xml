@@ -1,5 +1,5 @@
-<tool id="4c_primerfile" name="4c Primer File" version="2.1.0">
-  <description>load 4c files</description>
+<tool id="4c_object" name="Initialization of the 4c Object" version="2.1.0">
+  <description>load 4c data</description>
       <macros>
         <import>macros.xml</import>
     </macros>
